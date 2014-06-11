@@ -6,11 +6,33 @@
 
 		<title>WebAV Video chat</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
 		<script src="js/lib/adapter.js"></script>
 	</head>
 	<body>
+	    <video />
+
 		<script>
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
             
+            // Specify the media to get. In this case, the media is video
+            var constraints = {audio: true, video: true};
+
+            // If the media is obtained successfully, the video stream from the webcam is set as the source of the video element
+            function successCallback(localMediaStream) {
+            	// set the localMediaStream obtained from getUserMedia to the window.stream object
+            	window.stream = localMediaStream;
+            	var video = document.querySelector('video');
+            	// create a URL object from the localMediaStream and set it as the src of the video element
+            	video.src = window.URL.createObjectURL(localMediaStream);
+            	video.play();
+            }
+
+            function errorCallback(error) {
+            	console.log("navigator.getUserMedia error: ", error);
+            }
+
+            navigator.getUserMedia(constraints, successCallback, errorCallback);
 		</script>
 	</body>
 </html>

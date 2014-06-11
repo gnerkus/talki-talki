@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/gnerkus/video_chat"
+		"url": "https://github.com/gnerkus/webav_video_chat"
 	},
 	"keywords": [
         "webrtc"
