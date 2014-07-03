@@ -4,29 +4,20 @@
 		<title>WebAV Video Chat</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="WebAV Video Chat" />
-		<link rel="stylesheet" href="bootstrap.min.css" />
-		<link rel="stylesheet" href="style.css" />
-		<script src="js/lib/adapter.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<base target="_blank">
 	</head>
 	<body>
-		<video id="localStream"></video>
-		<script>
-            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+		<div id='container'>
+            <div id='videos'>
+                <video id='localVideo' autoplay muted></video>
+                <video id='remoteVideo' autoplay></video>
+            </div>
+        </div>
 
-            var constraints = {video: true, audio: true};
-
-            function successCallback (localMediaStream) {
-            	window.stream = localMediaStream;
-            	var localVideo = document.querySelector('#localStream');
-            	localVideo.src = window.URL.createObjectURL(localMediaStream);
-            	localVideo.play();
-            }
-
-            function errorCallback (error) {
-            	console.log(error);
-            }
-
-            navigator.getUserMedia(constraints, successCallback, errorCallback);
-		</script>
+        <script src='/socket.io/socket.io.js'></script>
+        <script src='js/lib/adapter.js'></script>
+        <script src='js/main.js'></script>
 	</body>
 </html>
